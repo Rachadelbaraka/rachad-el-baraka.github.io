@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Rachad El Baraka - Étudiant BTS SIO SLAM au Lycée Simone Weil Saint-Étienne">
+    <title>Rachad El Baraka - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #6d28d9;
+            --accent: #a78bfa;
+            --dark: #0f0f0f;
+            --light: #1a1a1a;
+            --text: #e5e5e5;
+            --text-dim: #a1a1aa;
+            --border: #2d2d2d;
+            --card-bg: #1f1f1f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--dark);
+        }
+
+        nav {
+            background: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b4e 50%, #1a1a1a 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .badge {
+            background: var(--light);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body h4 {
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-body li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dim);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .veille-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .veille-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .veille-card:hover {
+            transform: translateX(5px);
+        }
+
+        .veille-card h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .veille-card p {
+            color: var(--text-dim);
+        }
+
+        .veille-card ul {
+            color: var(--text-dim);
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        footer {
+            background: var(--card-bg);
+            color: var(--text);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                box-shadow: 0 4px 8px rgba(139, 92, 246, 0.2);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Rachad El Baraka</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#stage">Stage</a></li>
+                <li><a href="#veille">Veille Tech</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>Rachad El Baraka</h1>
+            <p class="subtitle">Étudiant BTS SIO SLAM</p>
+            <p>Je suis étudiant en BTS SIO option SLAM au Lycée Simone Weil à Saint-Étienne. Passionné par le développement web et les nouvelles technologies, je me spécialise en PHP/Laravel, API REST et design UX/UI. Je recherche une alternance pour approfondir mes compétences en développement full-stack.</p>
+            <div class="social-links">
+                <a href="https://github.com/Rachadelbaraka" target="_blank">🐙 GitHub</a>
+                <a href="mailto:rachadelbaraka3@gmail.com">📧 Email</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="competences">
+            <h2>Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>💻 Langages de Programmation</h3>
+                    <div class="skill-badges">
+                        <span class="badge">PHP 8.3+</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">HTML5</span>
+                        <span class="badge">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🚀 Frameworks & Bibliothèques</h3>
+                    <div class="skill-badges">
+                        <span class="badge">Laravel 10+</span>
+                        <span class="badge">Alpine.js</span>
+                        <span class="badge">Blade</span>
+                        <span class="badge">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🛠️ Outils & Technologies</h3>
+                    <div class="skill-badges">
+                        <span class="badge">Git / GitHub</span>
+                        <span class="badge">Composer</span>
+                        <span class="badge">SQLite / MySQL</span>
+                        <span class="badge">Postman</span>
+                        <span class="badge">Figma</span>
+                        <span class="badge">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>📊 Méthodologies</h3>
+                    <div class="skill-badges">
+                        <span class="badge">Architecture MVC</span>
+                        <span class="badge">REST API</span>
+                        <span class="badge">UX/UI Design</span>
+                        <span class="badge">Veille technologique</span>
+                        <span class="badge">Agile</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2>Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔹 Quiz BTS SIO</h3>
+                        <div class="project-meta">
+                            <span>📅 2025</span>
+                            <span>🎯 Application Web Interactive</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Description :</strong> Application web interactive de quiz dédiée au BTS SIO, conçue pour les journées portes ouvertes. Cette application permet aux visiteurs de tester leurs connaissances sur la formation de manière ludique et engageante.</p>
+                        
+                        <h4>🎯 Objectifs</h4>
+                        <ul>
+                            <li>Créer une expérience utilisateur intuitive et moderne</li>
+                            <li>Présenter la formation BTS SIO de manière interactive</li>
+                            <li>Développer une interface responsive pour tous les appareils</li>
+                            <li>Implémenter un système de scoring dynamique</li>
+                        </ul>
+
+                        <h4>💡 Technologies utilisées</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+
+                        <h4>✅ Fonctionnalités</h4>
+                        <ul>
+                            <li>Interface de quiz interactive avec questions à choix multiples</li>
+                            <li>Système de score en temps réel</li>
+                            <li>Design responsive adapté mobile et desktop</li>
+                            <li>Feedback immédiat sur les réponses</li>
+                            <li>Animation et transitions fluides</li>
+                        </ul>
+
+                        <h4>🎓 Ce que j'ai appris</h4>
+                        <ul>
+                            <li>Manipulation avancée du DOM en JavaScript</li>
+                            <li>Gestion d'états et d'événements utilisateur</li>
+                            <li>Design d'interfaces utilisateur engageantes</li>
+                            <li>Déploiement sur Netlify</li>
+                            <li>Optimisation de l'expérience utilisateur</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://quizz-bts-sio.netlify.app/" class="btn" target="_blank">🌐 Voir le site</a>
+                            <a href="https://github.com/Rachadelbaraka/journ-eportesouvertes" class="btn btn-outline" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔹 TechPC - Magasin Informatique</h3>
+                        <div class="project-meta">
+                            <span>📅 2025</span>
+                            <span>🛒 Site E-commerce</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Description :</strong> Site web e-commerce complet pour un magasin d'informatique spécialisé dans la vente de composants PC, périphériques et accessoires. Projet de reproduction et d'amélioration d'une interface commerciale moderne.</p>
+                        
+                        <h4>🎯 Objectifs</h4>
+                        <ul>
+                            <li>Créer une expérience d'achat fluide et professionnelle</li>
+                            <li>Implémenter un catalogue produits organisé</li>
+                            <li>Développer une interface responsive et moderne</li>
+                            <li>Optimiser la navigation et l'accessibilité</li>
+                        </ul>
+
+                        <h4>💡 Technologies utilisées</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Design Responsive</span>
+                            <span class="tech-tag">UI/UX</span>
+                        </div>
+
+                        <h4>✅ Fonctionnalités</h4>
+                        <ul>
+                            <li>Page d'accueil avec produits mis en avant</li>
+                            <li>Système de navigation par catégories</li>
+                            <li>Fiches produits détaillées</li>
+                            <li>Design responsive mobile-first</li>
+                            <li>Interface utilisateur moderne et épurée</li>
+                            <li>Optimisation des performances</li>
+                        </ul>
+
+                        <h4>🎓 Ce que j'ai appris</h4>
+                        <ul>
+                            <li>Architecture d'un site e-commerce</li>
+                            <li>Design de fiches produits attractives</li>
+                            <li>Hiérarchisation de l'information</li>
+                            <li>Principes de design commercial</li>
+                            <li>Optimisation des images et du chargement</li>
+                            <li>Déploiement et hébergement sur Netlify</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://mellifluous-genie-64178c.netlify.app/" class="btn" target="_blank">🌐 Voir le site</a>
+                            <a href="https://github.com/Rachadelbaraka/techpc-clone-repro" class="btn btn-outline" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔹 API Citations</h3>
+                        <div class="project-meta">
+                            <span>📅 Septembre 2025</span>
+                            <span>🔧 API REST</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Description :</strong> Développement d'une API REST complète pour gérer des citations. L'API permet de créer, lire, modifier et supprimer des citations via des endpoints RESTful.</p>
+                        
+                        <h4>🎯 Objectifs</h4>
+                        <ul>
+                            <li>Comprendre l'architecture REST</li>
+                            <li>Implémenter un CRUD complet</li>
+                            <li>Gérer les codes de réponse HTTP</li>
+                            <li>Valider les données entrantes</li>
+                        </ul>
+
+                        <h4>💡 Technologies utilisées</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">SQLite</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">Postman</span>
+                        </div>
+
+                        <h4>✅ Fonctionnalités</h4>
+                        <ul>
+                            <li>GET /citations - Liste toutes les citations</li>
+                            <li>GET /citations/:id - Récupère une citation spécifique</li>
+                            <li>POST /citations - Crée une nouvelle citation</li>
+                            <li>PUT /citations/:id - Modifie une citation existante</li>
+                            <li>DELETE /citations/:id - Supprime une citation</li>
+                        </ul>
+
+                        <h4>🎓 Ce que j'ai appris</h4>
+                        <ul>
+                            <li>Conception d'architecture REST</li>
+                            <li>Gestion des erreurs HTTP (404, 400, 500)</li>
+                            <li>Validation et sécurisation des données</li>
+                            <li>Documentation d'API</li>
+                            <li>Tests avec Postman</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/Rachadelbaraka" class="btn" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔹 Atelier Figma TechSolutions</h3>
+                        <div class="project-meta">
+                            <span>📅 Septembre 2025</span>
+                            <span>🎨 Design UX/UI</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Description :</strong> Conception d'un outil de gestion de tickets IT pour l'entreprise fictive TechSolutions. Projet complet suivant une méthodologie UX professionnelle, de l'analyse des besoins utilisateurs jusqu'au prototype interactif.</p>
+
+                        <h4>📋 Méthodologie UX appliquée</h4>
+                        <ul>
+                            <li>📊 Analyse des interviews utilisateurs</li>
+                            <li>📝 Création de cas d'utilisation (user stories)</li>
+                            <li>✏️ Conception de wireframes (maquettes fil de fer)</li>
+                            <li>🎨 Design UI (interface utilisateur finale)</li>
+                            <li>🔄 Prototypage interactif avec transitions</li>
+                        </ul>
+
+                        <h4>💡 Technologies utilisées</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Composants</span>
+                            <span class="tech-tag">Auto-layout</span>
+                            <span class="tech-tag">Prototypage</span>
+                        </div>
+
+                        <h4>✅ Fonctionnalités conçues</h4>
+                        <ul>
+                            <li>Dashboard de visualisation des tickets</li>
+                            <li>Formulaire de création de ticket</li>
+                            <li>Système de priorisation</li>
+                            <li>Workflow de traitement des demandes</li>
+                            <li>Interface responsive (mobile + desktop)</li>
+                        </ul>
+
+                        <h4>🎓 Ce que j'ai appris</h4>
+                        <ul>
+                            <li>Méthodologie UX complète</li>
+                            <li>Outils de prototypage professionnel (Figma)</li>
+                            <li>Analyse des besoins utilisateurs</li>
+                            <li>Création de design systems</li>
+                            <li>Importance du feedback utilisateur</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/Rachadelbaraka" class="btn" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage">
+            <h2>Stage Professionnel</h2>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🧑‍💻 Stage – Développement web et application de gestion</h3>
+                    <div class="project-meta">
+                        <span>🏢 Tech PC – Saint-Étienne</span>
+                        <span>📅 28 mai au 26 juin 2025</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p><strong>Formation :</strong> BTS SIO – Option SLAM (Solutions Logicielles et Applications Métiers)</p>
+                    
+                    <h4>🔍 Contexte</h4>
+                    <p>Durant mon stage au sein de l'entreprise Tech PC, spécialisée dans la vente, la maintenance et le développement de solutions informatiques et téléphoniques, j'ai participé à la conception et au développement d'outils numériques destinés à améliorer la gestion interne et la visibilité en ligne de l'entreprise.</p>
+
+                    <h4>🧩 Missions réalisées</h4>
+                    <ul>
+                        <li>Développement d'une application de gestion interne (stock, ventes et commandes) permettant de centraliser les données produits, clients et interventions</li>
+                        <li>Création d'un site vitrine responsive pour présenter les services de l'entreprise et faciliter la prise de contact</li>
+                        <li>Conception et gestion d'une base de données MySQL adaptée aux besoins métiers</li>
+                        <li>Mise en place d'un système d'authentification et de rôles utilisateurs (Admin / Employé)</li>
+                        <li>Rédaction de la documentation technique et utilisateur</li>
+                    </ul>
+
+                    <h4>💻 Technologies utilisées</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">VS Code</span>
+                        <span class="tech-tag">XAMPP</span>
+                        <span class="tech-tag">GitHub</span>
+                    </div>
+
+                    <h4>🚀 Compétences acquises</h4>
+                    <ul>
+                        <li>Conception d'applications web full stack (front & back-end)</li>
+                        <li>Gestion de projet, modélisation de bases de données</li>
+                        <li>Sécurisation et structuration du code</li>
+                        <li>Travail en autonomie et communication professionnelle</li>
+                        <li>Analyse des besoins métiers et traduction en solutions techniques</li>
+                        <li>Documentation et formation utilisateurs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage">
+            <h2>Stage Professionnel</h2>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🧑‍💻 Stage – Développement web et application de gestion</h3>
+                    <div class="project-meta">
+                        <span>🏢 Tech PC – Saint-Étienne</span>
+                        <span>📅 28 mai au 26 juin 2025</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p><strong>Formation :</strong> BTS SIO – Option SLAM (Solutions Logicielles et Applications Métiers)</p>
+                    
+                    <h4>🔍 Contexte</h4>
+                    <p>Durant mon stage au sein de l'entreprise Tech PC, spécialisée dans la vente, la maintenance et le développement de solutions informatiques et téléphoniques, j'ai participé à la conception et au développement d'outils numériques destinés à améliorer la gestion interne et la visibilité en ligne de l'entreprise.</p>
+
+                    <h4>🧩 Missions réalisées</h4>
+                    <ul>
+                        <li>Développement d'une application de gestion interne (stock, ventes et commandes) permettant de centraliser les données produits, clients et interventions</li>
+                        <li>Création d'un site vitrine responsive pour présenter les services de l'entreprise et faciliter la prise de contact</li>
+                        <li>Conception et gestion d'une base de données MySQL adaptée aux besoins métiers</li>
+                        <li>Mise en place d'un système d'authentification et de rôles utilisateurs (Admin / Employé)</li>
+                        <li>Rédaction de la documentation technique et utilisateur</li>
+                    </ul>
+
+                    <h4>💻 Technologies utilisées</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">VS Code</span>
+                        <span class="tech-tag">XAMPP</span>
+                        <span class="tech-tag">GitHub</span>
+                    </div>
+
+                    <h4>🚀 Compétences acquises</h4>
+                    <ul>
+                        <li>Conception d'applications web full stack (front & back-end)</li>
+                        <li>Gestion de projet, modélisation de bases de données</li>
+                        <li>Sécurisation et structuration du code</li>
+                        <li>Travail en autonomie et communication professionnelle</li>
+                        <li>Analyse des besoins métiers et traduction en solutions techniques</li>
+                        <li>Documentation et formation utilisateurs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="veille">
+            <h2>Veille Technologique</h2>
+            <div class="veille-grid">
+                <div class="veille-card">
+                    <h3>🎯 Ma méthodologie de veille</h3>
+                    <p>Je maintiens une veille technologique active sur les sujets suivants :</p>
+                    <ul>
+                        <li>Intelligence Artificielle et ses applications</li>
+                        <li>Frameworks web modernes (Laravel, React, Vue.js)</li>
+                        <li>Pratiques de développement (DevOps, CI/CD)</li>
+                        <li>Sécurité informatique</li>
+                        <li>Tendances UX/UI</li>
+                    </ul>
+                    <p><strong>Mes sources :</strong> Blogs techniques (Medium, Dev.to), Newsletters spécialisées, YouTube, GitHub Trending, Conférences en ligne</p>
+                </div>
+
+                <div class="veille-card">
+                    <h3>📡 IA Weekly - Septembre 2025</h3>
+                    <p>Analyse des annonces NVIDIA, Amazon, OpenAI et leur impact sur les métiers du développement</p>
+                </div>
+
+                <div class="veille-card">
+                    <h3>🇫🇷 Souveraineté numérique française</h3>
+                    <p>Étude des enjeux stratégiques du secteur et des initiatives gouvernementales</p>
+                </div>
+
+                <div class="veille-card">
+                    <h3>🤖 IA en 2026 : Prospective</h3>
+                    <p>Vision d'expert sur l'évolution de l'IA et ses implications professionnelles</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-content">
+                <p>N'hésitez pas à me cont
